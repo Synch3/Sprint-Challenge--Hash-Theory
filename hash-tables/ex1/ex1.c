@@ -9,6 +9,24 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 
   /* YOUR CODE HERE */
 
+  Answer *answer = malloc(sizeof(Answer *));
+
+  for (int i = 0; i < length; i++)
+  {    
+    if ((hash_table_retrieve(ht, weights[i])) != -1)
+    {
+      answer->index_1 = i;
+      // printf("Weight: %d\n", weights[i]);
+      answer->index_2 = hash_table_retrieve(ht, weights[i]);
+      // printf("Found match: i1: %d i2:%d INDEX: %d WEIGHT: %d\n", answer->index_1, answer->index_2, i, weights[i]);
+      return answer;
+    }
+    else
+    {
+      hash_table_insert(ht, (limit - weights[i]), i);
+    }
+} 
+
   return NULL;
 }
 
